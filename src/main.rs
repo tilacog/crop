@@ -7,8 +7,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     // Parse command line arguments
     let args: Vec<String> = env::args().collect();
 
-    if args.len() != 2 {
-        eprintln!("Usage: {} <input_image_path>", args[0]);
+    if args.len() != 4 {
+        eprintln!("Usage: {} <input_image_path> <rows> <columns>", args[0]);
         std::process::exit(1);
     }
 
@@ -20,8 +20,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     let (width, height) = (img.width(), img.height());
 
     // Rows and columns
-    let rows = 4;
-    let columns = 5;
+    let rows:u32 = args[2].parse()?;
+    let columns: u32 = args[3].parse()?;
 
     // Define the size of the sub-images
     let sub_image_width = width / columns;
